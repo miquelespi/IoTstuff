@@ -11,7 +11,7 @@ DHT_TYPE = Adafruit_DHT.AM2302
 DHT_PIN  = 22
 GDOCS_EMAIL            = 'troppo@gmail.com'
 GDOCS_SPREADSHEET_NAME = 'sensinghome'
-GDOCS_JSON_FILE        = '/home/pi/src/sensing/longnapiotfun-ef06d99c0061.json'
+GDOCS_JSON_FILE        = '/home/pi/src/IoTstuff/raspi_temperature_humidity/longnapiotfun-ef06d99c0061.json'
 
 
 def login_open_sheet(email, json_file, spreadsheet):
