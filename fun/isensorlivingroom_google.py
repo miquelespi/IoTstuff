@@ -19,9 +19,7 @@ def login_open_sheet(email, json_file, spreadsheet):
     import json
     from oauth2client.client import SignedJwtAssertionCredentials
 
-    #try:
-    if 1==1:
-
+    try:
         json_key = json.load(open(json_file))
         scope = ['https://spreadsheets.google.com/feeds']
 
@@ -32,8 +30,7 @@ def login_open_sheet(email, json_file, spreadsheet):
 
         worksheet = gc.open(spreadsheet).sheet1
         return worksheet
-    else:
-    #except:
+    except:
         print 'Unable to login and get spreadsheet.  Check email, password, spreadsheet name.'
         sys.exit(1)
 
