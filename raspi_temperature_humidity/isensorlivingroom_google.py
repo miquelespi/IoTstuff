@@ -9,12 +9,11 @@ import gspread
 
 DHT_TYPE = Adafruit_DHT.AM2302
 DHT_PIN  = 22
-GDOCS_EMAIL            = 'troppo@gmail.com'
 GDOCS_SPREADSHEET_NAME = 'sensinghome'
 GDOCS_JSON_FILE        = '/home/pi/src/IoTstuff/raspi_temperature_humidity/longnapiotfun-ef06d99c0061.json'
 
 
-def login_open_sheet(email, json_file, spreadsheet):
+def login_open_sheet(json_file, spreadsheet):
     """Connect to Google Docs spreadsheet and return the first worksheet."""
     import json
     from oauth2client.client import SignedJwtAssertionCredentials
@@ -24,17 +23,15 @@ def login_open_sheet(email, json_file, spreadsheet):
         scope = ['https://spreadsheets.google.com/feeds']
 
         credentials = SignedJwtAssertionCredentials(json_key['client_email'], json_key['private_key'], scope)
-
         gc = gspread.authorize(credentials)
-
-
+        
         worksheet = gc.open(spreadsheet).sheet1
         return worksheet
     except:
-        print 'Unable to login and get spreadsheet.  Check email, password, spreadsheet name.'
+        print 'Unable to login and get spreadsheet.'
         sys.exit(1)
 
-worksheet = login_open_sheet(GDOCS_EMAIL, GDOCS_JSON_FILE, GDOCS_SPREADSHEET_NAME)
+worksheet = login_open_sheet(GDOCS_JSON_FILE, GDOCS_SPREADSHEET_NAME)
 
 humidity, temp = Adafruit_DHT.read(DHT_TYPE, DHT_PIN)
 
